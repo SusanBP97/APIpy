@@ -16,9 +16,15 @@ for gato in datos[:13]:
 
 response1  = requests.get("https://randomuser.me/api/?results=20") 
 datos1 = response1.json()
+#print(json.dumps(datos1, indent=4))
+
+
 
 Nombres = []
-for i in range (20):
-    Nombres.append(datos1['results'][i]['name']['first'] + " " + datos1['results'][i]['name']['last'] )
+for persona in datos1['results'][:5]:
+    if persona ['gender']=='male':
+        Nombres.append(persona['name']['first'] +" "+ persona['name']['last']+" "+str(persona['dob']['age']))
+    #print(json.dumps(datos1, indent=4))
+
 
 print (Nombres)
