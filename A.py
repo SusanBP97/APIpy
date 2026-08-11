@@ -1,24 +1,24 @@
 import requests
-response = requests.get("https://randomuser.me/api/?results=20")
-name = []
-email = []
-country = []
-age = []
-country_code = []
-age_code_max = []
-age_code_min = []
-
-for i in range(20):
-    name.append(response.json()['results'][i]['name']['first'] + " " + response.json()['results'][i]['name']['last'])
-    email.append(response.json()['results'][i]['email'])
-    country.append(response.json()['results'][i]['location']['country'])
-    age.append(response.json()['results'][i]['dob']['age'])
- 
-
-for i in range(len(age)):
-     if age[i] > 30:
-         age_code_max.append((name[i], email[i], country[i], age[i]))
-     else:
-         age_code_min.append((name[i], email[i], country[i], age[i]))
+import json 
+response = requests.get(" https://api.thecatapi.com/v1/breeds/")
+datos = response.json()
 
 
+print(f"{'Nombre':<25} {'origin':<20} {'wikipedia_url'}")
+
+for gato in datos[:13]:
+    print(
+        f"{gato['name']:<25} "
+        f"{gato['origin']:<20} "
+        f"{gato['wikipedia_url']}"
+ )
+
+
+response1  = requests.get("https://randomuser.me/api/?results=20") 
+datos1 = response1.json()
+
+Nombres = []
+for i in range (20):
+    Nombres.append(datos1['results'][i]['name']['first'] + " " + datos1['results'][i]['name']['last'] )
+
+print (Nombres)
